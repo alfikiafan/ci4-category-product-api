@@ -1,4 +1,4 @@
-# REST API Demo — Category & Product
+# REST API Demo - Category & Product
 
 REST API CRUD sederhana untuk mengelola **Kategori** dan **Produk**, dibangun menggunakan **PHP (CodeIgniter 4)** dan **MySQL**, sebagai bagian dari technical test Developer.
 
@@ -190,10 +190,17 @@ Semua response menggunakan format JSON konsisten:
 
 ## Validasi & Error Handling
 
-- Field wajib, panjang minimum/maksimum, tipe data, dan keunikan (`name`, `sku`) divalidasi otomatis — error dikembalikan dengan status `422`.
+- Field wajib, panjang minimum/maksimum, tipe data, dan keunikan (`name`, `sku`) divalidasi otomatis - error dikembalikan dengan status `422`.
 - Request ke resource yang tidak ditemukan mengembalikan status `404`.
 - Penghapusan kategori yang masih memiliki produk terkait akan ditolak dengan status `409` (menjaga integritas relasi).
 - Endpoint yang tidak dikenal mengembalikan JSON `404` (tidak ada halaman HTML error).
+
+## Catatan Desain & Pengembangan Lanjutan
+
+Beberapa hal berikut sengaja tidak diimplementasikan pada demo ini, namun menjadi pertimbangan desain untuk pengembangan lanjutan:
+
+- **API Versioning** - Endpoint saat ini belum menggunakan prefix versi (misal `/api/v1/categories`). Untuk production, sebaiknya seluruh route dikelompokkan di bawah versi (`/api/v1/...`) agar perubahan breaking di masa depan tidak mengganggu konsumen API yang masih memakai versi lama.
+- **Autentikasi & Otorisasi** - API ini belum dilindungi autentikasi (API key/Bearer token) karena di luar scope technical test. Pada implementasi production, endpoint write (`POST`, `PUT`, `DELETE`) sebaiknya dilindungi dengan token-based authentication (misal JWT atau API key) dan otorisasi berbasis role.
 
 ## Dokumentasi API (Postman)
 
